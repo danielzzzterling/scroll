@@ -1,14 +1,10 @@
-﻿const videos = [
-  document.getElementById('v1'),
-  document.getElementById('v2'),
-  document.getElementById('v3'),
-];
-const image = document.getElementById('img1');
+const videos = Array.from(document.querySelectorAll('video.layer'));
 const fade = document.getElementById('fade');
 const heartPath = document.getElementById('heartPath');
 const textCenter = document.getElementById('textCenter');
+const spacer = document.getElementById('spacer');
 
-const layers = [...videos, image];
+const layers = Array.from(document.querySelectorAll('.layer'));
 let heartLength = 0;
 const message = 'Te amo con toda mi vida, Mariana, por siempre y para siempre.';
 
@@ -89,6 +85,10 @@ window.addEventListener('scroll', () => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+  if (spacer) {
+    spacer.style.height = `${layers.length * 100}vh`;
+  }
+
   prepareVideos();
   onScroll();
   startFadeIn();
@@ -102,3 +102,4 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('resize', onScroll);
+
