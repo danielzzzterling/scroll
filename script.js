@@ -5,8 +5,12 @@
 ];
 const image = document.getElementById('img1');
 const fade = document.getElementById('fade');
+const heartPath = document.getElementById('heartPath');
+const textCenter = document.getElementById('textCenter');
 
 const layers = [...videos, image];
+let heartLength = 0;
+const message = 'Te amo con toda mi vida, Mariana, por siempre y para siempre.';
 
 function clamp(v, min, max) {
   return Math.min(max, Math.max(min, v));
@@ -53,6 +57,17 @@ function onScroll() {
       setOpacity(layer, 0);
     }
   });
+
+  if (heartPath && heartLength > 0) {
+    const draw = clamp(progress, 0, 1);
+    const offset = heartLength * (1 - draw);
+    heartPath.style.strokeDashoffset = offset.toFixed(2);
+  }
+
+  if (textCenter) {
+    const count = Math.max(1, Math.round(message.length * clamp(progress, 0, 1)));
+    textCenter.textContent = message.slice(0, count);
+  }
 }
 
 function startFadeIn() {
@@ -78,6 +93,12 @@ window.addEventListener('DOMContentLoaded', () => {
   onScroll();
   startFadeIn();
   setTimeout(forceFadeOut, 1800);
+
+  if (heartPath) {
+    heartLength = heartPath.getTotalLength();
+    heartPath.style.strokeDasharray = `${heartLength}`;
+    heartPath.style.strokeDashoffset = `${heartLength}`;
+  }
 });
 
 window.addEventListener('resize', onScroll);

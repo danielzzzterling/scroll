@@ -25,6 +25,7 @@ body {
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   position: relative;
+  scroll-snap-type: y mandatory;
 }
 
 .viewport {
@@ -49,10 +50,29 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
+  filter: brightness(0.30);
   opacity: 0;
   transition: opacity 160ms linear;
   pointer-events: none;
+}
+
+#v1 {
+  object-position: 50% center;
+  object-fit: cover;
+}
+
+#v2 {
+  object-position: 50% center;
+}
+
+#v3 {
+  object-position: 80% center;
+}
+
+#img1 {
+  object-position: 43% center;
 }
 
 #v1 {
@@ -69,25 +89,46 @@ body {
   z-index: 5;
 }
 
+.heart-draw {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(60vw, 320px);
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.heart-draw path {
+  fill: none;
+  stroke: #e11111;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .center-text {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   text-align: center;
-  padding: 0 24px;
+  padding: 0 24px 60px;
   color: #ffffff;
-  font-size: 24px;
-  font-weight: 600;
+  font-family: "Great Vibes", "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
   letter-spacing: 0.2px;
   z-index: 4;
   pointer-events: none;
 }
 
 .spacer {
-  height: 400vh;
+  height: 100vh;
   width: 100%;
+  scroll-snap-align: start;
 }
 
 .desktop-block {
