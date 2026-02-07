@@ -20,7 +20,7 @@ html, body {
 }
 
 body {
-  min-height: 800vh;
+  min-height: 300vh;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
