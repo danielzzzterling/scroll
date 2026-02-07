@@ -61,14 +61,23 @@ function startFadeIn() {
   });
 }
 
+function forceFadeOut() {
+  fade.style.opacity = '0';
+  setTimeout(() => {
+    fade.style.display = 'none';
+  }, 1600);
+}
+
 window.addEventListener('scroll', () => {
   window.requestAnimationFrame(onScroll);
+  forceFadeOut();
 });
 
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
   prepareVideos();
   onScroll();
   startFadeIn();
+  setTimeout(forceFadeOut, 1800);
 });
 
 window.addEventListener('resize', onScroll);
