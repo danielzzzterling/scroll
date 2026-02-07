@@ -86,7 +86,7 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   if (spacer) {
-    spacer.style.height = `${layers.length * 40}vh`;
+    spacer.style.height = `${layers.length * 10}vh`;
   }
 
   prepareVideos();
