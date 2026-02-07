@@ -1,4 +1,4 @@
-const videos = Array.from(document.querySelectorAll('video.layer'));
+﻿const videos = Array.from(document.querySelectorAll('video.layer'));
 const fade = document.getElementById('fade');
 const heartPath = document.getElementById('heartPath');
 const textCenter = document.getElementById('textCenter');
@@ -86,7 +86,7 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   if (spacer) {
-    spacer.style.height = `${layers.length * 100}vh`;
+    spacer.style.height = `${layers.length * 40}vh`;
   }
 
   prepareVideos();
