@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
@@ -12,6 +12,26 @@
   <body>
     <div class="viewport">
       <div class="stack">
+        <div class="audio-player" aria-label="Reproductor de audio">
+          <div class="player-card">
+            <button class="player-btn" id="playToggle" type="button" aria-label="Reproducir/Pausar">
+              <span class="player-icon" id="playIcon">▶</span>
+            </button>
+            <div class="player-meta">
+              <div class="player-title">Ahora suena</div>
+              <div class="player-sub">Nuestra cancion</div>
+              <input class="player-bar" id="seekBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progreso" />
+              <div class="player-time">
+                <span id="timeNow">0:00</span>
+                <span id="timeTotal">0:00</span>
+              </div>
+            </div>
+          </div>
+          <audio id="audioTrack" preload="metadata">
+            <source src="song.mp3" type="audio/mpeg" />
+            Tu navegador no soporta audio HTML5.
+          </audio>
+        </div>
         <video id="v1" class="layer" src="video1.mp4" playsinline webkit-playsinline muted autoplay loop preload="auto"></video>
         <video id="v2" class="layer" src="video2.mp4" playsinline webkit-playsinline muted autoplay loop preload="auto"></video>
         <video id="v3" class="layer" src="video3.mp4" playsinline webkit-playsinline muted autoplay loop preload="auto"></video>
@@ -49,3 +69,10 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+
+
+
+
+
+

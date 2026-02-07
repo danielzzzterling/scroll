@@ -99,7 +99,61 @@ window.addEventListener('DOMContentLoaded', () => {
     heartPath.style.strokeDasharray = `${heartLength}`;
     heartPath.style.strokeDashoffset = `${heartLength}`;
   }
+
+  const audio = document.getElementById('audioTrack');
+  const playToggle = document.getElementById('playToggle');
+  const playIcon = document.getElementById('playIcon');
+  const seekBar = document.getElementById('seekBar');
+  const timeNow = document.getElementById('timeNow');
+  const timeTotal = document.getElementById('timeTotal');
+
+  if (audio && playToggle && playIcon && seekBar && timeNow && timeTotal) {
+    const fmt = (value) => {
+      if (!Number.isFinite(value)) return '0:00';
+      const m = Math.floor(value / 60);
+      const s = Math.floor(value % 60);
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    };
+
+    const updateTime = () => {
+      timeNow.textContent = fmt(audio.currentTime);
+      timeTotal.textContent = fmt(audio.duration);
+      const progress = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      seekBar.value = progress.toFixed(1);
+    };
+
+    playToggle.addEventListener('click', async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+        } catch {
+          // Autoplay blocked; user gesture required.
+        }
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      playIcon.textContent = '❚❚';
+    });
+
+    audio.addEventListener('pause', () => {
+      playIcon.textContent = '▶';
+    });
+
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('loadedmetadata', updateTime);
+    audio.addEventListener('ended', () => {
+      playIcon.textContent = '▶';
+    });
+
+    seekBar.addEventListener('input', () => {
+      if (!audio.duration) return;
+      const next = (parseFloat(seekBar.value) / 100) * audio.duration;
+      audio.currentTime = next;
+    });
+  }
 });
 
 window.addEventListener('resize', onScroll);
-
