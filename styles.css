@@ -12,7 +12,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -24,6 +24,7 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
+  position: relative;
 }
 
 .viewport {
@@ -85,7 +86,7 @@ body {
 }
 
 .spacer {
-  height: 100vh;
+  height: 400vh;
   width: 100%;
 }
 

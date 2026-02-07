@@ -32,8 +32,10 @@ async function prepareVideos() {
 
 function onScroll() {
   const doc = document.documentElement;
-  const scrollTop = doc.scrollTop || document.body.scrollTop;
-  const maxScroll = doc.scrollHeight - window.innerHeight;
+  const body = document.body;
+  const scrollTop = window.scrollY || doc.scrollTop || body.scrollTop || 0;
+  const scrollHeight = Math.max(body.scrollHeight, doc.scrollHeight);
+  const maxScroll = Math.max(0, scrollHeight - window.innerHeight);
 
   const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
   const segmentCount = layers.length - 1;
